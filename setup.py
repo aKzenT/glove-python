@@ -10,8 +10,7 @@ from setuptools.command.test import test as TestCommand
 
 def define_extensions(cythonize=False):
 
-    compile_args = ['-fopenmp',
-                    '-ffast-math']
+    compile_args = ['-ffast-math']
 
     # There are problems with illegal ASM instructions
     # when using the Anaconda distribution (at least on OSX).
@@ -31,11 +30,11 @@ def define_extensions(cythonize=False):
         glove_corpus = "glove/corpus_cython.cpp"
 
     return [Extension("glove.glove_cython", [glove_cython],
-                      extra_link_args=["-fopenmp"],
+                      extra_link_args=[],
                       extra_compile_args=compile_args),
             Extension("glove.metrics.accuracy_cython",
                       [glove_metrics],
-                      extra_link_args=["-fopenmp"],
+                      extra_link_args=[],
                       extra_compile_args=compile_args),
             Extension("glove.corpus_cython", [glove_corpus],
                       language='C++',
